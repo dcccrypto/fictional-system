@@ -1,5 +1,6 @@
 import { supabase } from './client';
 import { Trade, AITrader } from '@/types';
+import { RealtimePostgresChangesPayload } from '@supabase/supabase-js';
 
 export const subscribeToTrades = (
   callback: (payload: { new: Trade }) => void
@@ -13,8 +14,8 @@ export const subscribeToTrades = (
         schema: 'public',
         table: 'trades'
       },
-      (payload) => {
-        callback(payload as { new: Trade });
+      (payload: RealtimePostgresChangesPayload<Trade>) => {
+        callback({ new: payload.new as Trade });
       }
     )
     .subscribe();
@@ -36,8 +37,11 @@ export const subscribeToTraderUpdates = (
         schema: 'public',
         table: 'ai_traders'
       },
-      (payload) => {
-        callback(payload as { new: AITrader; old: AITrader });
+      (payload: RealtimePostgresChangesPayload<AITrader>) => {
+        callback({ 
+          new: payload.new as AITrader,
+          old: payload.old as AITrader
+        });
       }
     )
     .subscribe();

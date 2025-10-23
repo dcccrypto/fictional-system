@@ -15,7 +15,7 @@ async function testPercentageChanges() {
       console.log(`\n${asset}:`);
       console.log(`  Price: $${data.price.toLocaleString()}`);
       console.log(`  24h Change: ${data.change_24h >= 0 ? '+' : ''}${data.change_24h.toFixed(2)}%`);
-      console.log(`  Volume: $${data.volume_24h.toLocaleString()}`);
+      console.log(`  Volume: $${data.volume_24h?.toLocaleString() || 'N/A'}`);
       
       // Check if change is 0
       if (data.change_24h === 0) {
