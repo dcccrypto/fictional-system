@@ -27,15 +27,18 @@ export default function Home() {
       >
         <motion.h1
           className="text-6xl md:text-8xl font-bold text-foreground mb-4"
+          style={{
+            backgroundImage: 'linear-gradient(135deg, #00ff88 0%, #00a8ff 100%)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent',
+          }}
           animate={{
             backgroundImage: [
               'linear-gradient(135deg, #00ff88 0%, #00a8ff 100%)',
               'linear-gradient(135deg, #00a8ff 0%, #ff0055 100%)',
               'linear-gradient(135deg, #ff0055 0%, #00ff88 100%)',
             ],
-            backgroundClip: 'text',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent',
           }}
           transition={{
             duration: 3,
